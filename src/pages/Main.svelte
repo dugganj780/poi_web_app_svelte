@@ -1,0 +1,54 @@
+<script>
+
+</script>
+
+<div class="uk-height-large uk-flex uk-flex-center uk-flex-middle uk-background-cover uk-light" data-src="/src/assets/cork_view_northside.jpg" uk-img>
+    <h1 class="uk-text-capitalize">Points of Interest in Ireland<br />
+        <a class="uk-align-center uk-button uk-button-primary" href="/#/login">Login</a>
+        <a class="uk-align-center uk-button uk-button-primary" href="/#/signup">Sign Up</a>
+    </h1>
+</div>
+<div class="uk-container uk-margin">
+    <div class="uk-align-centre">
+        <h2 class="uk-text-center">Welcome</h2>
+        <p class="uk-text-center">
+            Thank you for taking the time to look at my Points of Interest in Ireland app.
+            With this app you will be able to log places that you would like to visit or have visited and can discover new areas logged by other users.
+            For ease of use, I have divided Points of Interest into 4 distinct categories, National Monuments, Mountains, Forests, and Islands.
+
+        </p>
+    </div>
+    <br />
+    <div class="uk-grid-divider uk-child-width-expand@s" uk-grid>
+        <div>
+            <h2>National Monument</h2>
+            <p>
+                Ireland is home to many national monuments that anyone wanting to learn more about the country should visit.
+                These date back as far as pre-history, right up to modern day.
+            </p>
+        </div>
+        <div>
+            <h2>Mountain</h2>
+            <p>
+                Ireland is a treasure trove for hikers and is home to many mountain ranges affording incredible panoramic views of a beautiful country.
+                Happy hiking!
+            </p>
+        </div>
+    </div>
+    <div class="uk-grid-divider uk-child-width-expand@s" uk-grid>
+        <div>
+            <h2>Forest</h2>
+            <p>
+                Ireland is also home forested areas for those who enjoy a walk but would like something more relaxing than a full on hike.
+            </p>
+        </div>
+        <div>
+            <h2>Island</h2>
+            <p>
+                If you can get a ferry (or cable car) out to one of the islands along the coast of Ireland, I highly suggest you do so.
+                You can see some amazing wildlife and meet some very friendly people.
+            </p>
+        </div>
+
+    </div>
+</div>
