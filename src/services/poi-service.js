@@ -1,4 +1,5 @@
 import axios from "axios";
+import {user} from "../stores";
 
 
 export class PoiService {
@@ -108,6 +109,24 @@ export class PoiService {
             const response = await axios.post(this.baseUrl + "/api/pois", newPoi);
             console.log(response)
             return response.status === 200;
+        } catch (error) {
+            return false;
+        }
+    }
+
+    async signup(firstName, lastName, email, password) {
+        try {
+            const userDetails = {
+                firstName: firstName,
+                lastName: lastName,
+                email: email,
+                password: password,
+            };
+            const response = await axios.post(this.baseUrl + "/api/users", userDetails);
+            const newUser = await response.data;
+            console.log(newUser);
+            user.set(newUser);
+            return true;
         } catch (error) {
             return false;
         }

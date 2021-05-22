@@ -4,6 +4,7 @@
   import Main from "./pages/Main.svelte"
   import AllPois from "./pages/AllPois.svelte";
   import Login from "./pages/Login.svelte";
+  import Signup from "./pages/Signup.svelte";
   import AddPoi from "./pages/AddPoi.svelte"
   import Navigator from "./components/Navigator.svelte";
   import Router from "svelte-spa-router";
@@ -13,6 +14,7 @@
   let routes = {
     "/" : Main,
     "/login": Login,
+    "/signup" : Signup,
     "/pois": AllPois,
     "/logout": Main,
     "/addpoi": AddPoi,

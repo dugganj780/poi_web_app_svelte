@@ -11,6 +11,7 @@
     let long = 0;
     let rating = 0;
     let errorMessage = "";
+    let user
 
     onMount(async () => {
         poiList = await poiService.getPois()

@@ -38,3 +38,11 @@ export const navBar = writable({
     bar: [],
 });
 export const title = writable("");
+
+export const user = writable({
+    firstName: "",
+    lastName: "",
+    email: "",
+    password: "",
+    _id: ""
+});
