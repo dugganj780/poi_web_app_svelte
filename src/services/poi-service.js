@@ -1,7 +1,8 @@
 import axios from "axios";
 import {user} from "../stores";
 import {poi} from "../stores";
-
+const bcrypt = require("bcrypt");          // ADDED
+const saltRounds = 10;                     // ADDED
 
 export class PoiService {
     poiList = [];
@@ -183,12 +184,13 @@ export class PoiService {
     }
 
     async signup(firstName, lastName, email, password) {
+        const hash = await bcrypt.hash(password, saltRounds);
         try {
             const userDetails = {
                 firstName: firstName,
                 lastName: lastName,
                 email: email,
-                password: password,
+                password: hash,
             };
             const response = await axios.post(this.baseUrl + "/api/users", userDetails);
             const newUser = await response.data;
