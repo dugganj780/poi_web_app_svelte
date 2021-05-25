@@ -2,11 +2,22 @@
     import PoiList from "../components/PoiList.svelte";
     import blarneycastle02 from "/src/assets/blarney-castle02.jpg";
     import {navBar, mainBar, title} from "../stores";
+    import {poi} from "../stores";
+    import {onMount, getContext} from "svelte"
 
     title.set("Points of Interest");
     navBar.set({
         bar: mainBar
     });
+
+    const poiService = getContext("PoiService");
+
+
+    onMount(async () => {
+        console.log(poi)
+        await poiService.clearPoi();
+    });
+
 </script>
 
 

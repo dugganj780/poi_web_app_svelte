@@ -1,5 +1,6 @@
 import axios from "axios";
 import {user} from "../stores";
+import {poi} from "../stores";
 
 
 export class PoiService {
@@ -8,6 +9,12 @@ export class PoiService {
 
     constructor(baseUrl) {
         this.baseUrl = baseUrl;
+        if (localStorage.user) {
+            axios.defaults.headers.common["Authorization"] = "Bearer " + JSON.parse(localStorage.user);
+        }
+        if (localStorage.poi) {
+           localStorage.setItem("poi", localStorage.poi);
+        }
     }
 
     async getPois() {
@@ -17,6 +24,47 @@ export class PoiService {
             return this.poiList;
         } catch (error) {
             return [];
+        }
+    }
+
+    async getPoi(id){
+        try {
+            //const response = await axios.get(this.baseUrl + "/api/pois/" + id);
+            const response = await axios.get(`${this.baseUrl}/api/pois/` +id, {id});
+            poi.set(response.data);
+            console.log(response.data);
+            localStorage.poi = JSON.stringify(response.data);
+            return response.data;
+        } catch (error) {
+            return null;
+        }
+    }
+
+    async clearPoi(){
+        try {
+            poi.set({
+                name: "",
+                category: "",
+                description:"",
+                lat: "",
+                long: "",
+                rating: "",
+                user: "",
+                _id: ""
+            })
+            console.log(poi);
+            localStorage.poi = null;
+    } catch (error) {
+        return null;
+    }
+    }
+
+    async getPoiImages(id) {
+        try {
+            const response = await axios.get(this.baseUrl + "/api/images/" + id);
+            return response.data;
+        } catch (e) {
+            return null;
         }
     }
 
@@ -90,13 +138,31 @@ export class PoiService {
     async login(email, password) {
         try {
             const response = await axios.post(`${this.baseUrl}/api/users/authenticate`, {email, password});
-            return response.status == 200;
+            axios.defaults.headers.common["Authorization"] = "Bearer " + response.data.token;
+            if (response.data.success) {
+                user.set({
+                    email: email,
+                    token: response.data.token
+                });
+                localStorage.user = JSON.stringify(response.data.token);
+                return true;
+            }
+            return false;
         } catch (error) {
             return false;
         }
     }
 
-    async createPoi(name, category, description, lat, long, rating) {
+    async logout() {
+        user.set({
+            email: "",
+            token: ""
+        });
+        axios.defaults.headers.common["Authorization"] = "";
+        localStorage.user = null;
+    }
+
+    async createPoi(name, category, description, lat, long, rating, user) {
         try {
             const newPoi = {
                 name: name,
@@ -105,9 +171,11 @@ export class PoiService {
                 lat: lat,
                 long: long,
                 rating: rating,
+                user: user,
             };
             const response = await axios.post(this.baseUrl + "/api/pois", newPoi);
             console.log(response)
+            console.log(newPoi)
             return response.status === 200;
         } catch (error) {
             return false;
@@ -129,6 +197,36 @@ export class PoiService {
             return true;
         } catch (error) {
             return false;
+        }
+    }
+
+    async getUser(id) {
+        try {
+            const response = await axios.get(this.baseUrl + "/api/users/" + id);
+            return response.data;
+        } catch (error) {
+            return null;
+        }
+    }
+
+    async getWeatherInfo(lat, long){
+        try {
+            const API = "979ff9585ac147c62cce65ca76081689";
+            const response = await self.fetch("http://api.openweathermap.org/data/2.5/weather?lat=" + lat + "&lon=" + long + "&appid=" + API);
+            let weather = await response.json();
+            //console.log(weather);
+
+            const weatherInfo = {
+                weather: weather.weather[0].main,
+                temp: Math.round(weather.main.temp - 273.15) + "\u00B0C",
+                feelTemp: Math.round(weather.main.feels_like - 273.15) + "\u00B0C",
+                windspeed: weather.wind.speed + "km/hr",
+            }
+            console.log(weatherInfo.feelTemp)
+            return weatherInfo
+        }
+        catch (error) {
+            return null;
         }
     }
 }

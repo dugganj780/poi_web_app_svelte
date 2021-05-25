@@ -1,31 +1,24 @@
-<script>
+<script lang="ts">
     import {onMount, getContext } from 'svelte'
+    import {poi} from "../stores";
 
     const poiService = getContext("PoiService");
 
     let poiList;
+    let mountains;
+    let natMons;
+    let islands;
+    let forests;
+
     onMount(async () => {
         poiList = await poiService.getPois();
-    })
-    let mountains;
-    onMount(async () => {
         mountains = await poiService.getMountains();
-    })
-
-    let natMons;
-    onMount(async () => {
         natMons = await poiService.getNatMons();
-    })
-
-    let islands;
-    onMount(async () => {
         islands = await poiService.getIslands();
+        forests = await poiService.getForests();
+
     })
 
-    let forests;
-    onMount(async () => {
-        forests = await poiService.getForests();
-    })
 
 </script>
 
@@ -47,7 +40,7 @@
                 {#each mountains as mountain}
                 <tr>
                     <td>{mountain.name}</td>
-                    <td> <button class="uk-button uk-button-secondary"> <a href="/poiview/{mountain._id}"> View </a></button> </td>
+                    <td> <a class="uk-button uk-button-default" on:click={ async () => {await poiService.getPoi(mountain._id);} } href="/#/poiview/{mountain._id}"> View </a></td>
                 </tr>
                 {/each}
                     {/if}
@@ -68,7 +61,7 @@
                     {#each natMons as natMon}
                         <tr>
                             <td>{natMon.name}</td>
-                            <td> <button class="uk-button uk-button-secondary"> <a href="/poiview/{natMon._id}"> View </a></button> </td>
+                            <td> <a class="uk-button uk-button-default" on:click={async () => {await poiService.getPoi(natMon._id);} } href="/#/poiview/{natMon._id}"> View </a></td>
                         </tr>
                     {/each}
                 {/if}
@@ -89,7 +82,7 @@
                     {#each forests as forest}
                         <tr>
                             <td>{forest.name}</td>
-                            <td> <button class="uk-button uk-button-secondary"> <a href="/poiview/{forest._id}"> View </a></button> </td>
+                            <td> <a class="uk-button uk-button-default" on:click={async () => {await poiService.getPoi(forest._id);} } href="/#/poiview/{forest._id}"> View </a></td>
                         </tr>
                     {/each}
                 {/if}
@@ -110,7 +103,7 @@
                     {#each islands as island}
                         <tr>
                             <td>{island.name}</td>
-                            <td> <button class="uk-button uk-button-secondary"> <a href="/poiview/{island._id}"> View </a></button> </td>
+                            <td> <a class="uk-button uk-button-default" on:click={async () => {await poiService.getPoi(island._id);} } href="/#/poiview/{island._id}"> View </a></td>
                         </tr>
                     {/each}
                 {/if}

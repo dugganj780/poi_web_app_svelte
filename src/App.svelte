@@ -8,6 +8,8 @@
   import AddPoi from "./pages/AddPoi.svelte"
   import Navigator from "./components/Navigator.svelte";
   import Router from "svelte-spa-router";
+  import PoiView from "./pages/PoiView.svelte";
+  import {poi} from "./stores";
 
   setContext("PoiService", new PoiService("http://localhost:4000"));
 
@@ -18,6 +20,7 @@
     "/pois": AllPois,
     "/logout": Main,
     "/addpoi": AddPoi,
+    "/poiview/:id": PoiView,
   }
 
 </script>

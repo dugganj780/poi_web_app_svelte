@@ -1,6 +1,6 @@
-<script>
+<script lang="ts">
     import { onMount, getContext } from "svelte";
-    const poiService = getContext("PoiService");
+    import {user} from "../stores";
 
     let poiList = [];
     let name = "";
@@ -11,18 +11,21 @@
     let long = 0;
     let rating = 0;
     let errorMessage = "";
-    let user
+
+    const poiService = getContext("PoiService");
 
     onMount(async () => {
-        poiList = await poiService.getPois()
+        poiList = await poiService.getPois();
+        console.log($user);
     });
 
     async function createPoi() {
-        const success = await poiService.createPoi(name, category[categoryChoice], description, lat, long, rating)
+        const success = await poiService.createPoi(name, category[categoryChoice], description, lat, long, rating, $user)
         if (success) {
 
         } else {
-            errorMessage = "Donation not completed - some error occurred";
+         //   console.log(error.response.data)
+            errorMessage = "POI not created - some error occurred";
         }
     }
 </script>

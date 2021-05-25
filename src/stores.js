@@ -40,9 +40,17 @@ export const navBar = writable({
 export const title = writable("");
 
 export const user = writable({
-    firstName: "",
-    lastName: "",
     email: "",
-    password: "",
+    token: ""
+});
+
+export const poi = writable({
+    name: "",
+    category: "",
+    description:"",
+    lat: "",
+    long: "",
+    rating: "",
+    user: "",
     _id: ""
 });
