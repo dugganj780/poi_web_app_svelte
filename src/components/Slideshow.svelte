@@ -15,6 +15,7 @@
         if (weather===null){
             weather = await poiService.getWeatherInfo($poi.lat,$poi.long);
         }
+
         console.log(weather);
         return weather;
     });

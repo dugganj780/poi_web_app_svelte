@@ -2,6 +2,10 @@
     import {navBar, mainBar, title} from "../stores";
     import PoiCard from "../components/PoiCard.svelte";
     import Slideshow from "../components/Slideshow.svelte";
+    import AddComment from "../components/AddComment.svelte";
+    import Comments from "../components/Comments.svelte";
+    import {poi} from "../stores";
+    import {user} from "../stores";
 
 
     title.set("Points of Interest");
@@ -20,5 +24,14 @@
         <div>
             <!--{{>slideshow}}--><Slideshow />
         </div>
+    </div>
+    <br>
+    <div class="uk-card uk-card-default uk-card-body uk-padding">
+        <AddComment />
+    </div>
+    <br>
+    <div class="uk-card uk-card-default uk-card-body uk-padding">
+        <h3>Comments</h3>
+        <Comments />
     </div>
 </div>

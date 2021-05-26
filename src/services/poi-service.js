@@ -1,8 +1,7 @@
 import axios from "axios";
 import {user} from "../stores";
 import {poi} from "../stores";
-const bcrypt = require("bcrypt");          // ADDED
-const saltRounds = 10;                     // ADDED
+
 
 export class PoiService {
     poiList = [];
@@ -173,6 +172,7 @@ export class PoiService {
                 long: long,
                 rating: rating,
                 user: user,
+                comments: []
             };
             const response = await axios.post(this.baseUrl + "/api/pois", newPoi);
             console.log(response)
@@ -183,14 +183,28 @@ export class PoiService {
         }
     }
 
+    async addComment(name, dateTime, text, id){
+        try{
+            const newComment = {
+                name: name,
+                dateTime: dateTime,
+                text: text
+            };
+            //const id = localStorage.poi._id;
+            const response = await axios.post(this.baseUrl + "/api/pois/" +id, newComment);
+            return response.status === 200;
+        }catch (error) {
+            return false;
+        }
+    }
+
     async signup(firstName, lastName, email, password) {
-        const hash = await bcrypt.hash(password, saltRounds);
         try {
             const userDetails = {
                 firstName: firstName,
                 lastName: lastName,
                 email: email,
-                password: hash,
+                password: password,
             };
             const response = await axios.post(this.baseUrl + "/api/users", userDetails);
             const newUser = await response.data;

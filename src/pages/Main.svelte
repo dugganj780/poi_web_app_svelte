@@ -1,5 +1,12 @@
 <script>
+    import {onMount, getContext} from "svelte"
+    import {poi} from "../stores";
 
+    const poiService = getContext("PoiService");
+
+    onMount(async () => {
+        await poiService.logout();
+    });
 </script>
 
 <div class="uk-height-large uk-flex uk-flex-center uk-flex-middle uk-background-cover uk-light" data-src="/src/assets/cork_view_northside.jpg" uk-img>

@@ -2,13 +2,13 @@ import { writable } from "svelte/store";
 
 export const mainBar = [{
     title: "Pois",
-    icon: "fas fa-hand-holding-usd fa-3x",
-    colour: "color:rgb(153, 196, 74)",
+    icon: "fas fa-mountain fa-3x",
+    colour: "color:rgb(75, 20, 200)",
     link: "/#/pois",
 },
     {
         title: "Add a POI",
-        icon: "fas fa-hand-holding-usd fa-3x",
+        icon: "fas fa-plus fa-3x",
         colour: "color:rgb(153, 196, 74)",
         link: "/#/addpoi",
     },
@@ -52,5 +52,6 @@ export const poi = writable({
     long: "",
     rating: "",
     user: "",
-    _id: ""
+    _id: "",
+    comments: []
 });
