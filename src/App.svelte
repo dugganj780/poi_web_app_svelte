@@ -11,7 +11,7 @@
   import PoiView from "./pages/PoiView.svelte";
   import {poi} from "./stores";
 
-  setContext("PoiService", new PoiService("http://localhost:4000"));
+  setContext("PoiService", new PoiService("https://intense-badlands-00597.herokuapp.com"));
 
   let routes = {
     "/" : Main,
