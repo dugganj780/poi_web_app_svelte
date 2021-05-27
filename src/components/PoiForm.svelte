@@ -16,7 +16,6 @@
 
     onMount(async () => {
         poiList = await poiService.getPois();
-        console.log($user);
     });
 
     async function createPoi() {

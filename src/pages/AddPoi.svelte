@@ -3,7 +3,7 @@
     import {navBar, mainBar, title} from "../stores"
     import PoiForm from "../components/PoiForm.svelte";
 
-    title.set("Donation Services Inc.");
+    title.set("Points of Interest");
     navBar.set({
         bar: mainBar
     });

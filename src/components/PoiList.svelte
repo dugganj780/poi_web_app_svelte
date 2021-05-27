@@ -12,6 +12,8 @@
 
     onMount(async () => {
         poiList = await poiService.getPois();
+
+        //Creating lists of POIs based on their category
         mountains = await poiService.getMountains();
         natMons = await poiService.getNatMons();
         islands = await poiService.getIslands();

@@ -1,4 +1,6 @@
 <script lang="ts">
+    //Could not implement Images in the app so this component is used to get weather information
+
     import { onMount, getContext } from "svelte";
     import { poi } from "../stores";
 
@@ -6,11 +8,8 @@
 
     let weather;
 
-
-    //let weather = poiService.getWeatherInfo($poi.lat, $poi.long);
-
-
     onMount(async () => {
+        //if statement used as a delay in case weather does not load the first time
         weather = await poiService.getWeatherInfo($poi.lat,$poi.long);
         if (weather===null){
             weather = await poiService.getWeatherInfo($poi.lat,$poi.long);

@@ -26,7 +26,6 @@
             push("/#/poiview/"+ $poi)
 
         } else {
-            //   console.log(error.response.data)
             errorMessage = "Comment Unsuccessful - some error occurred";
         }
     }

@@ -5,6 +5,7 @@
     const poiService = getContext("PoiService");
 
     onMount(async () => {
+        //logout method clears the user on localstorage
         await poiService.logout();
     });
 </script>
