@@ -7,12 +7,16 @@
     const poiService = getContext("PoiService");
 
     let weather;
+    const lat = $poi.lat;
+    const long = $poi.long;
 
     onMount(async () => {
-        //if statement used as a delay in case weather does not load the first time
-        weather = await poiService.getWeatherInfo($poi.lat,$poi.long);
+        //if statement and while loop used as a delay in case weather does not load the first time
+        weather = await poiService.getWeatherInfo(lat,long);
         if (weather===null){
-            weather = await poiService.getWeatherInfo($poi.lat,$poi.long);
+            while (weather===null) {
+                weather = await poiService.getWeatherInfo($poi.lat, $poi.long);
+            }
         }
 
         console.log(weather);
