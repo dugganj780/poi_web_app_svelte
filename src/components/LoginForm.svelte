@@ -10,7 +10,7 @@
     async function login() {
         let success = await poiService.login(email, password)
         if (success) {
-            push("/");
+            push("/pois");
         } else {
             email = "";
             password = "";

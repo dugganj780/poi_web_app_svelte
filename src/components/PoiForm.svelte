@@ -19,11 +19,11 @@
     });
 
     async function createPoi() {
-        const success = await poiService.createPoi(name, category[categoryChoice], description, lat, long, rating, $user)
+        const success = await poiService.createPoi(name, category[categoryChoice], description, lat, long, rating)
         if (success) {
 
         } else {
-         //   console.log(error.response.data)
+            console.log("This is the value for" + $user)
             errorMessage = "POI not created - some error occurred";
         }
     }

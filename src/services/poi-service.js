@@ -162,7 +162,7 @@ export class PoiService {
         localStorage.user = null;
     }
 
-    async createPoi(name, category, description, lat, long, rating, user) {
+    async createPoi(name, category, description, lat, long, rating) {
         try {
             const newPoi = {
                 name: name,
@@ -171,7 +171,6 @@ export class PoiService {
                 lat: lat,
                 long: long,
                 rating: rating,
-                user: user,
                 comments: []
             };
             const response = await axios.post(this.baseUrl + "/api/pois", newPoi);

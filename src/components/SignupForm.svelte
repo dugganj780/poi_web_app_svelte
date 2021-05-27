@@ -14,7 +14,7 @@
         let success = await poiService.signup(firstName, lastName, email, password)
         if (success) {
             console.log("Member created successfully")
-            push("/pois");
+            push("/");
         } else {
             errorMessage = "Error Trying to sign up";
         }
